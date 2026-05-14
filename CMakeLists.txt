@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.15)
-project(NetHack VERSION 3.7)
+project(NetHack VERSION 5.0)
 
 if(CMAKE_BUILD_TYPE)
   message("Build type: ${CMAKE_BUILD_TYPE}.")
@@ -8,7 +8,7 @@ endif()
 message(STATUS "Building NetHack version: ${NetHack_VERSION}.")
 
 set(HACKDIR
-    "$ENV{HOME}/nethackdir.37"
+    "$ENV{HOME}/nethackdir.50"
     CACHE STRING "Configuration files for nethack")
 
 message(STATUS "HACKDIR set to: ${HACKDIR}")
@@ -43,14 +43,14 @@ set(NH_DAT_GEN ${NetHack_BINARY_DIR}/dat)
 set(NH_UTIL_GEN ${NetHack_BINARY_DIR}/util)
 
 # Lua.
-set(LUA_VERSION 5.4.3)
+set(LUA_VERSION 5.4.8)
 
 ExternalProject_Add(
   fetch-lua
   PREFIX "lua"
   URL http://www.lua.org/ftp/lua-${LUA_VERSION}.tar.gz
   URL_HASH
-    SHA512=3a1a3ee8694b72b4ec9d3ce76705fe179328294353604ca950c53f41b41161b449877d43318ef4501fee44ecbd6c83314ce7468d7425ba9b2903c9c32a28bbc0
+    SHA256=4f18ddae154e793e46eeab727c59ef1c0c0c2b744e7b94219710d76f530629ae
   BUILD_IN_SOURCE TRUE
   CONFIGURE_COMMAND ""
   BUILD_COMMAND make
@@ -88,7 +88,10 @@ set(NETHACK_SRC
     "src/ball.c"
     "src/bones.c"
     "src/botl.c"
+    "src/calendar.c"
+    "src/cfgfiles.c"
     "src/cmd.c"
+    "src/coloratt.c"
     "src/date.c"
     "src/dbridge.c"
     "src/decl.c"
@@ -105,6 +108,7 @@ set(NETHACK_SRC
     "src/dothrow.c"
     "src/drawing.c"
     "src/dungeon.c"
+    "src/earlyarg.c"
     "src/eat.c"
     "src/end.c"
     "src/engrave.c"
@@ -113,8 +117,11 @@ set(NETHACK_SRC
     "src/extralev.c"
     "src/files.c"
     "src/fountain.c"
+    "src/getpos.c"
+    "src/glyphs.c"
     "src/hack.c"
     "src/hacklib.c"
+    "src/iactions.c"
     "src/insight.c"
     "src/invent.c"
     "src/isaac64.c"
@@ -143,6 +150,7 @@ set(NETHACK_SRC
     "src/nhlobj.c"
     "src/nhlsel.c"
     "src/nhlua.c"
+    "src/nhmd4.c"
     "src/o_init.c"
     "src/objects.c"
     "src/objnam.c"
@@ -159,12 +167,15 @@ set(NETHACK_SRC
     "src/read.c"
     "src/rect.c"
     "src/region.c"
+    "src/report.c"
     "src/restore.c"
     "src/rip.c"
     "src/rnd.c"
     "src/role.c"
     "src/rumors.c"
     "src/save.c"
+    "src/selvar.c"
+    "src/sfbase.c"
     "src/sfstruct.c"
     "src/shk.c"
     "src/shknam.c"
@@ -172,8 +183,10 @@ set(NETHACK_SRC
     "src/sounds.c"
     "src/sp_lev.c"
     "src/spell.c"
+    "src/stairs.c"
     "src/steal.c"
     "src/steed.c"
+    "src/strutil.c"
     "src/symbols.c"
     "src/sys.c"
     "src/teleport.c"
@@ -183,6 +196,7 @@ set(NETHACK_SRC
     "src/trap.c"
     "src/u_init.c"
     "src/uhitm.c"
+    "src/utf8map.c"
     "src/vault.c"
     "src/version.c"
     "src/vision.c"
@@ -191,16 +205,25 @@ set(NETHACK_SRC
     "src/wield.c"
     "src/windows.c"
     "src/wizard.c"
+    "src/wizcmds.c"
     "src/worm.c"
     "src/worn.c"
     "src/write.c"
     "src/zap.c"
-    "sys/share/posixregex.c"
     "sys/share/ioctl.c"
+    "sys/share/pcmain.c"
+    "sys/share/pcsys.c"
+    "sys/share/pctty.c"
+    "sys/share/pcunix.c"
+    "sys/share/pmatchregex.c"
+    "sys/share/posixregex.c"
+    "sys/share/random.c"
+    "sys/share/tclib.c"
+    "sys/share/unixtty.c"
+    "sys/share/uudecode.c"
     "sys/unix/unixunix.c"
     "sys/unix/unixmain.c"
     "sys/unix/unixres.c"
-    "sys/share/unixtty.c"
     "win/tty/getline.c"
     "win/tty/termcap.c"
     "win/tty/topl.c"
