@@ -31,6 +31,8 @@ add_compile_definitions(
   DEFAULT_WINDOW_SYS="tty"
   DLB)
 
+set(CCFLAGS '-g')
+set(CFLAGS "${CCFLAGS} -I../include -DNOTPARMDECL")
 set(NH_SRC ${NetHack_SOURCE_DIR}/src)
 set(NH_INC ${NetHack_SOURCE_DIR}/include)
 set(NH_DAT ${NetHack_SOURCE_DIR}/dat)
