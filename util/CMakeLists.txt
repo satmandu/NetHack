@@ -8,6 +8,8 @@ set(MAKEDEFS_HEADERS ${NH_INC_GEN}/date.h # ${NH_INC_GEN}/onames.h
 
 set(DLB_SRC dlb_main.c ${NH_SRC}/dlb.c panic.c ${NH_SRC}/alloc.c ${NH_SRC}/hacklib.c)
 
+set(RECOVER_SRC recover.c ${NH_SRC}/hacklib.c)
+
 file(MAKE_DIRECTORY ${NH_INC_GEN})
 
 add_executable(makedefs ${MAKEDEFS_SRC})
@@ -18,7 +20,7 @@ add_executable(dlb ${DLB_SRC})
 target_include_directories(dlb PRIVATE ${NH_INC} ${NH_INC_GEN} ${NH_UTIL_GEN}
                                        ${LUA_INCLUDE})
 
-add_executable(recover recover.c)
+add_executable(recover ${RECOVER_SRC})
 target_include_directories(recover PRIVATE ${NH_INC} ${NH_INC_GEN}
                                            ${NH_UTIL_GEN} ${LUA_INCLUDE})
 
