@@ -56,7 +56,7 @@ file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/submodules/lua DESTINATION ${CMAKE_CURRENT
 # Prepare some variables to build Lua.
 # set(LUAMAKEFLAGS "CC='$ENV{CC}' CFLAGS='${CFLAGS}' LDFLAGS='${LDFLAGS}'")
 set(LUAMAKEFLAGS 
-    CFLAGS='${CFLAGS}' LDFLAGS='${LDFLAGS}')
+    CFLAGS='${CFLAGS} ${LDFLAGS}')
 set(LUA_BUILD_COMMAND
     make ${LUAMAKEFLAGS} a)
 set(LUA_LIB_NAME liblua.a)
