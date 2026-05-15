@@ -237,10 +237,6 @@ set(NETHACK_SRC
     "src/worn.c"
     "src/write.c"
     "src/zap.c"
-    "sys/share/pcmain.c"
-    "sys/share/pcsys.c"
-    "sys/share/pctty.c"
-    "sys/share/pcunix.c"
     "sys/share/pmatchregex.c"
     "sys/share/random.c"
     "sys/share/unixtty.c"
@@ -283,6 +279,10 @@ elseif (WIN32)
     add_compile_definitions(WIN32CON SAFEPROCS)
     # Append Windows specific sources.
     set(NETHACK_WIN_SRC
+        "sys/share/pcmain.c"
+        "sys/share/pcsys.c"
+        "sys/share/pctty.c"
+        "sys/share/pcunix.c"
         "sys/share/cppregex.cpp"
         "win/share/safeproc.c"
         "sys/windows/windsys.c"
