@@ -57,28 +57,16 @@ file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/submodules/lua DESTINATION ${CMAKE_CURRENT
 # set(LUAMAKEFLAGS "CC='$ENV{CC}' CFLAGS='${CFLAGS}' LDFLAGS='${LDFLAGS}'")
 set(LUAMAKEFLAGS 
     CFLAGS='${CFLAGS}' LDFLAGS='${LDFLAGS}' )
-set(LUA_BUILD_COMMAND
-    make ${LUAMAKEFLAGS} a)
+set(LUA_BUILD_COMMAND make)
+# make ${LUAMAKEFLAGS} a)
 set(LUA_LIB_NAME liblua.a)
-#if (WIN32)
-#set(LUA_BUILD_COMMAND
-    #vcvarsall.bat x86_amd64 && cl.exe /MD /O2 /c /DLUA_BUILD_AS_DLL *.c &&
-    #del lua.o 2>null && del onelua.o 2>null &&
-    #ren lua.obj lua.o && ren onelua.obj onelua.o &&
-    #link.exe /DLL /IMPLIB:lua.lib /OUT:lua.dll *.obj)
-#set(LUA_LIB_NAME lua.lib)
-#elseif (UNIX)
-#set(DLLIB "-ldl")
-#set(LUAMAKEFLAGS "CC='$ENV{CC}' SYSCFLAGS='${SYSCFLAGS}'")
-#set(LUABASE "liblua-${LUA_VERSION}.a")
-#set(LUALIB "../lib/lua/${LUABASE}")
-#set(LUALIBS "${LUALIB} -lm ${DLLIB}")
-#set(LUAHEADERS "lib/lua-${LUA_VERSION}/src")
-#set(LUA_BUILD_COMMAND
-    #cd ${LUAHEADERS} && make ${LUAMAKEFLAGS} a &&
-    #cp liblua.a ${LUA_SRC_DIR}/)
-#set(LUA_LIB_NAME liblua.a)
-#endif()
+if (WIN32)
+set(LUA_BUILD_COMMAND
+    vcvarsall.bat x86_amd64 && cl.exe /MD /O2 /c /DLUA_BUILD_AS_DLL *.c &&
+    ren lua.obj lua.o && ren onelua.obj onelua.o &&
+    link.exe /DLL /IMPLIB:lua.lib /OUT:lua.dll *.obj)
+set(LUA_LIB_NAME lua.lib)
+endif()
 
 set(LUA_INCLUDE ${LUA_SRC_DIR})
 set(TOPLUALIB ${LUA_SRC_DIR}/${LUA_LIB_NAME})
@@ -354,8 +342,8 @@ add_custom_command(TARGET nethack POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy   ${NH_SYS}/windows/nethackrc.template ${CMAKE_CURRENT_BINARY_DIR}
     COMMAND ${CMAKE_COMMAND} -E copy   ${NH_DOC}/Guidebook.txt ${CMAKE_CURRENT_BINARY_DIR}
     COMMAND ${CMAKE_COMMAND} -E copy   ${NH_DAT}/opthelp ${CMAKE_CURRENT_BINARY_DIR}
-    COMMAND ${CMAKE_COMMAND} -E copy   ${CMAKE_CURRENT_BINARY_DIR}/dat/nhdat370 ${CMAKE_CURRENT_BINARY_DIR}
-    COMMAND ${CMAKE_COMMAND} -E rename ${CMAKE_CURRENT_BINARY_DIR}/dat/nhdat370 ${CMAKE_CURRENT_BINARY_DIR}/dat/nhdat
+    COMMAND ${CMAKE_COMMAND} -E copy   ${CMAKE_CURRENT_BINARY_DIR}/dat/nhdat500 ${CMAKE_CURRENT_BINARY_DIR}
+    COMMAND ${CMAKE_COMMAND} -E rename ${CMAKE_CURRENT_BINARY_DIR}/dat/nhdat500 ${CMAKE_CURRENT_BINARY_DIR}/dat/nhdat
 )
 endif()
 
