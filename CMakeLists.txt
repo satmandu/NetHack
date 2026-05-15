@@ -239,7 +239,6 @@ set(NETHACK_SRC
     "src/zap.c"
     "sys/share/random.c"
     "sys/share/unixtty.c"
-    "sys/share/uudecode.c"
     "win/tty/getline.c"
     "win/tty/termcap.c"
     "win/tty/topl.c"
