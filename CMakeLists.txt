@@ -34,7 +34,7 @@ add_compile_definitions(
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -I${NH_INC}/include -DNOTPARMDECL $ENV{CFLAGS}")
 set(CCFLAGS "-g $ENV{CCFLAGS}" CACHE STRING 'ccflags')
 # set(CFLAGS "${CCFLAGS} -I../include -DNOTPARMDECL" CACHE STRING 'cflags')
-set(LDFLAGS "" CACHE STRING 'ldflags')
+# set(LDFLAGS "" CACHE STRING 'ldflags')
 set(NH_SRC ${NetHack_SOURCE_DIR}/src)
 set(NH_INC ${NetHack_SOURCE_DIR}/include)
 set(NH_DAT ${NetHack_SOURCE_DIR}/dat)
@@ -55,8 +55,8 @@ file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/submodules/lua DESTINATION ${CMAKE_CURRENT
 
 # Prepare some variables to build Lua.
 # set(LUAMAKEFLAGS "CC='$ENV{CC}' CFLAGS='${CFLAGS}' LDFLAGS='${LDFLAGS}'")
-set(LUAMAKEFLAGS 
-    CFLAGS='${CFLAGS}' LDFLAGS='${LDFLAGS}' )
+# set(LUAMAKEFLAGS
+#    CFLAGS='${CFLAGS}' LDFLAGS='${LDFLAGS}' )
 set(LUA_BUILD_COMMAND make)
 # make ${LUAMAKEFLAGS} a)
 set(LUA_LIB_NAME liblua.a)
