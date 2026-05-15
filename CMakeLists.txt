@@ -32,7 +32,6 @@ add_compile_definitions(
   DLB)
 
 #set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -I${NH_INC}/include -DNOTPARMDECL $ENV{CFLAGS}")
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -I${NH_INC}/include -DNOTPARMDECL")
 # set(CCFLAGS "-g $ENV{CCFLAGS}" CACHE STRING 'ccflags')
 # set(CFLAGS "${CCFLAGS} -I../include -DNOTPARMDECL" CACHE STRING 'cflags')
 # set(LDFLAGS "" CACHE STRING 'ldflags')
@@ -46,6 +45,8 @@ set(NH_SRC_GEN ${NetHack_BINARY_DIR}/src)
 set(NH_INC_GEN ${NetHack_BINARY_DIR}/include)
 set(NH_DAT_GEN ${NetHack_BINARY_DIR}/dat)
 set(NH_UTIL_GEN ${NetHack_BINARY_DIR}/util)
+
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -I${NH_INC}/include -DNOTPARMDECL")
 
 # Lua.
 set(LUA_VERSION 5.4.8)
