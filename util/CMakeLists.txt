@@ -7,7 +7,7 @@ set(MAKEDEFS_HEADERS ${NH_INC_GEN}/date.h # ${NH_INC_GEN}/onames.h
 
 set(DLB_SRC dlb_main.c ${NH_SRC}/dlb.c panic.c ${NH_SRC}/alloc.c ${NH_SRC}/hacklib.c)
 
-set(RECOVER_SRC ${NH_SRC}/files.c ${NH_SRC}/sfstruct.c ${NH_SRC}/sfbase.c ${NH_SRC}/version.c ${NH_SRC}/hacklib.c recover.c)
+set(RECOVER_SRC ${NH_SRC}/sfstruct.c ${NH_SRC}/sfbase.c ${NH_SRC}/version.c ${NH_SRC}/hacklib.c recover.c)
 
 file(MAKE_DIRECTORY ${NH_INC_GEN})
 
