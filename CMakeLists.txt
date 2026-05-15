@@ -237,7 +237,6 @@ set(NETHACK_SRC
     "src/worn.c"
     "src/write.c"
     "src/zap.c"
-    "sys/share/pmatchregex.c"
     "sys/share/random.c"
     "sys/share/unixtty.c"
     "sys/share/uudecode.c"
