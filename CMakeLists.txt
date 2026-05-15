@@ -31,7 +31,8 @@ add_compile_definitions(
   DEFAULT_WINDOW_SYS="tty"
   DLB)
 
-# set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -I${NH_INC}/include -DNOTPARMDECL $ENV{CFLAGS}")
+#set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -I${NH_INC}/include -DNOTPARMDECL $ENV{CFLAGS}")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -I${NH_INC}/include -DNOTPARMDECL")
 # set(CCFLAGS "-g $ENV{CCFLAGS}" CACHE STRING 'ccflags')
 # set(CFLAGS "${CCFLAGS} -I../include -DNOTPARMDECL" CACHE STRING 'cflags')
 # set(LDFLAGS "" CACHE STRING 'ldflags')
