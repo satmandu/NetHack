@@ -50,7 +50,8 @@ file(
   air.lua
   earth.lua
   fire.lua
-  water.lua)
+  water.lua
+  tut-?.lua)
 
 file(
   GLOB QUEST_LEVS
@@ -128,10 +129,14 @@ add_custom_command(
 # Defensive dependencies for when we also build NetHack with make/make install.
 list(TRANSFORM DATDLB PREPEND ${NH_DAT_GEN}/ OUTPUT_VARIABLE NH_DAT_GEN_DATDLB)
 
+set(SET_LOCALE_COMMAND LC_ALL=C)
+if (WIN32)
+set(SET_LOCALE_COMMAND )
+endif()
 add_custom_command(
   DEPENDS dlb ${NH_DAT_GEN_DATDLB}
   OUTPUT nhdat
-  COMMAND LC_ALL=C $<TARGET_FILE:dlb> ARGS cf nhdat ${DATDLB})
+  COMMAND ${SET_LOCALE_COMMAND} $<TARGET_FILE:dlb> ARGS cf nhdat ${DATDLB})
 
 set(ALL_DAT_GEN nhdat perm record logfile xlogfile sysconf)
 list(TRANSFORM ALL_DAT_GEN PREPEND ${NH_DAT_GEN}/)
@@ -140,4 +145,5 @@ add_custom_target(dat ALL DEPENDS ${ALL_DAT_GEN} ${ALL_DAT_NOTGEN} ${VARDAT})
 
 install(FILES ${ALL_DAT_GEN} DESTINATION ${INSTDIR})
 install(FILES ${ALL_DAT_NOTGEN} DESTINATION ${INSTDIR}/dat)
+install(FILES symbols DESTINATION ${INSTDIR}) # also copy symbols to the root directory next to the binary
 install(DIRECTORY DESTINATION ${INSTDIR}/save)

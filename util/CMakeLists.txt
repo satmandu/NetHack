@@ -1,11 +1,11 @@
 set(MAKEDEFS_SRC makedefs.c ${NH_SRC}/monst.c ${NH_SRC}/objects.c
-                 ${NH_SRC}/alloc.c ${NH_SRC}/date.c panic.c)
+                 ${NH_SRC}/alloc.c ${NH_SRC}/date.c ${NH_SRC}/hacklib.c panic.c)
 
 # TODO: Re-add onames.h once "prob error for class 4 (28%)" error is fixed.
 set(MAKEDEFS_HEADERS ${NH_INC_GEN}/date.h # ${NH_INC_GEN}/onames.h
                      ${NH_INC_GEN}/pm.h)
 
-set(DLB_SRC dlb_main.c ${NH_SRC}/dlb.c panic.c ${NH_SRC}/alloc.c)
+set(DLB_SRC dlb_main.c ${NH_SRC}/dlb.c panic.c ${NH_SRC}/alloc.c ${NH_SRC}/hacklib.c)
 
 file(MAKE_DIRECTORY ${NH_INC_GEN})
 
@@ -20,6 +20,10 @@ target_include_directories(dlb PRIVATE ${NH_INC} ${NH_INC_GEN} ${NH_UTIL_GEN}
 add_executable(recover recover.c)
 target_include_directories(recover PRIVATE ${NH_INC} ${NH_INC_GEN}
                                            ${NH_UTIL_GEN} ${LUA_INCLUDE})
+
+if (WIN32)
+target_include_directories(recover PRIVATE ${NH_SYS}/windows)
+endif()
 
 add_custom_command(
   DEPENDS makedefs
